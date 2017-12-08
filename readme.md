@@ -15,4 +15,7 @@ sass --watch scss/main.scss:css/main.min.css --style compressed`
 
 ## Technologies Used
 
+* [Flatpickr](https://chmln.github.io/flatpickr/)
+* [Simple Grid](http://simplegrid.io/)
+
 ## References

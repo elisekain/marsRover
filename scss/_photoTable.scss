@@ -1,0 +1,15 @@
+#blankState {
+	background-color: lighten($black, 85%);
+	padding: 10% 5%;
+	margin-top: 3%;
+
+	h2,
+	p {
+		margin: 0;
+	}
+
+	span {
+		font-weight: bold;
+		color: $lt-blue;
+	}
+}

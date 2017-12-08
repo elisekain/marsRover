@@ -9,10 +9,45 @@ html {
 
 // Color Palette
 $lt-blue: #0e68b1;
-$dk-blue: #061a40;
-$tan: #877774;
 $black: #191819;
+$red: #fc3d21;
 
 @import "simpleGrid";
+
+// typography at small sizes
+@media only screen and (max-width: $breakpoint-small) {
+	h1 {
+		font-size: 2rem;
+	}
+
+	h2 {
+		font-size: 1.375rem;
+	}
+
+	h3 {
+		font-size: 1.125rem;
+	}
+
+	h4 {
+		font-size: 1rem;
+	}
+
+	h5 {
+		font-size: 0.875rem;
+	}
+
+	h6 {
+		font-size: 0.875rem;
+	}
+
+	p {
+		font-size: 1rem;
+		font-weight: 200;
+		line-height: 1.8;
+	}
+}
+
 @import "header";
+@import "form";
+@import "photoTable";
 @import "footer";

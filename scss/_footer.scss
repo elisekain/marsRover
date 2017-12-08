@@ -1,4 +1,6 @@
 footer {
+	margin-top: 5%;
+
 	ul {
 		text-align: center;
 	}
@@ -8,6 +10,10 @@ footer {
 	em {
 		font-size: 0.875rem;
 		color: lighten($black, 30%);
+
+		@media only screen and (max-width: $breakpoint-small) {
+			font-size: 0.75rem;
+		}
 	}
 
 	li {

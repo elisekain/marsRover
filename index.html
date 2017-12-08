@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
-	<head lang="en">
+<html lang="en">
+	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Mars Rover Photos</title>
 		<link rel="stylesheet" href="./css/main.min.css">
 	</head>
@@ -11,6 +12,37 @@
 			<h1>Mars Rover Photos</h1>
 			<p>Search the <a href="https://api.nasa.gov/api.html#MarsPhotos" target="_blank" title="NASA Mars Rover API">NASA Mars Rover API</a> for photos.
 		</header>
+		
+		<main class="container">
+			<form class="searchForPhotos row">
+				<!-- Mars Rover Select -->
+				<div class="col-4">
+					<label for="rovers">Mars Rover Name:</label>
+					<select id="rovers" name="rovers">
+						<option value="curiosity">Curiosity</option>
+						<option value="opportunity">Opportunity</option>
+						<option value="spirit">Spirit</option>
+					</select>
+				</div>
+				
+				<!-- Earth Date Select -->
+				<div class="col-4">
+					<label for="earthDate">Earth Date:</label>
+					<input type="text" id="earthDate">
+				</div>
+				
+				<!-- Submit Button -->
+				<div class="col-4 right">
+					<button type="submit">Search For Photos</button>
+				</div>
+			</form>
+			
+			<div id="blankState" class="center">
+				<h2>Find a rover photo...</h2>
+				<p>Try searching for <span>Curiosity</span> on <span>2017-12-18</span></p>
+			</div>
+		</main>
+		
 		<footer>
 			<!-- SVG Icon Credits -->
 			<ul>
@@ -19,5 +51,11 @@
 				<li><em>Mars</em> icon by <a href="https://thenounproject.com/smashicons/" target="_blank">Ben Davis</a>, from the <a href="https://thenounproject.com/" target="_blank">Noun Project</a></li>
 			</ul>
 		</footer>
+		<!-- Date Picker Imports-->
+		<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+		<script src="https://unpkg.com/flatpickr"></script>
+		
+		<!-- Custom JS -->
+		<script src="./js/main.js"></script>
 	</body>
 </html>
