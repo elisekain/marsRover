@@ -1,0 +1,27 @@
+header {
+	padding-top: 3%;
+	background-color: $lt-blue;
+
+	@media only screen and (max-width: $breakpoint-small) {
+		padding-top: 7%;
+	}
+
+	h1,
+	p,
+	a {
+		color: white;
+	}
+
+	h1 {
+		margin: 0;
+	}
+
+	p {
+		margin-top: 0;
+	}
+
+	.marsRoverSVG {
+		display: block;
+		max-width: 100px;
+	}
+}

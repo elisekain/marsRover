@@ -1,0 +1,17 @@
+footer {
+	ul {
+		text-align: center;
+	}
+
+	li,
+	a,
+	em {
+		font-size: 0.875rem;
+		color: lighten($black, 30%);
+	}
+
+	li {
+		display: inline-block;
+		margin-right: 5%;
+	}
+}

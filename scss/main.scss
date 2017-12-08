@@ -1,0 +1,18 @@
+html {
+	box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+// Color Palette
+$lt-blue: #0e68b1;
+$dk-blue: #061a40;
+$tan: #877774;
+$black: #191819;
+
+@import "simpleGrid";
+@import "header";
+@import "footer";
