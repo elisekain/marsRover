@@ -48,9 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	function constructTable(photos, rover, earthDate) {
 		// If no photos found, show error message
 		if (!photos.length) {
-			rover = rover.replace(/\w\S*/g, function(w) {
-				return w.charAt(0).toUpperCase() + w.substr(1);
-			});
+			rover = rover.replace(/\w\S*/g, capitalizeWord);
 
 			let errorMsg = `
 				No Photos Found for 
@@ -83,6 +81,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		table.style.display = "table";
 		blankState.style.display = "none";
+	}
+
+	function capitalizeWord(w) {
+		return w.charAt(0).toUpperCase() + w.substr(1);
 	}
 
 	function showErrorMsg(error) {
@@ -124,6 +126,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 					if (rover === document.getElementById("rovers").value) {
 						setDateRange(null, rover);
+						let roverName = rover.replace(/\w\S*/g, capitalizeWord),
+							formattedDate = calendar.formatDate(
+								calendar.parseDate(rovers[rover].maxDate),
+								"F j, Y"
+							);
+
+						document.getElementById("suggestedSearch").innerHTML = `
+							Try searching for
+							<span>${roverName}</span> on 
+							<span>${formattedDate}</span>
+						`;
 					}
 				})
 				.catch(function(error) {
@@ -138,8 +151,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		if (!roverName) return;
 
 		// Based on rover manifest, set minDate, maxDate and date selected
-		calendar.set("minDate", new Date(rovers[roverName].minDate));
-		calendar.set("maxDate", new Date(rovers[roverName].maxDate));
-		calendar.setDate(new Date(rovers[roverName].maxDate));
+		calendar.set("minDate", new Date(rovers[roverName].minDate).fp_incr(1));
+		calendar.set("maxDate", new Date(rovers[roverName].maxDate).fp_incr(1));
+		calendar.setDate(new Date(rovers[roverName].maxDate).fp_incr(1));
 	}
 });
