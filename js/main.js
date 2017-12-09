@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			earthDate = e.target[1].value;
 
 		// Call Mars Rover API
-		fetch(`${API_BASE}/${rover}/photos?earth_date=2017-12-07&page=1&${API_KEY}`)
+		fetch(`${API_BASE}/${rover}/photos?earth_date=${earthDate}&page=1&${API_KEY}`)
 			.then(function(response) {
 				if (response.ok) {
 					return response.json();
@@ -26,12 +26,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 
 	function constructTable(photos, rover) {
-		let table = document.getElementById("photoTableBody");
-		table.innerHTML = "";
+		if (!photos.length) console.log("No Photos Found");
+		let table = document.getElementById("photoTable");
+		let tableBody = document.getElementById("photoTableBody");
+		let blankState = document.getElementById("blankState");
+		tableBody.innerHTML = "";
 
 		// Add row for each photo
 		photos.map(function(photo) {
-			table.innerHTML += `
+			tableBody.innerHTML += `
 			<tr>
 				<td class="col-4">${photo.id}</td>
 				<td class="col-4">${photo.sol}</td>
@@ -43,6 +46,9 @@ document.addEventListener("DOMContentLoaded", function() {
 			</tr>
 			`;
 		});
+
+		table.style.display = "table";
+		blankState.style.display = "none";
 
 		console.log(photos);
 	}
