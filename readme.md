@@ -16,6 +16,6 @@ To generate minified css when scss changes, run the following command in the roo
 
 * [Flatpickr](https://chmln.github.io/flatpickr/)
 * [Simple Grid](http://simplegrid.io/)
-* [Double Bounce Loader](https://github.com/tobiasahlin/SpinKit/blob/master/examples/2-double-bounce.html)
+* [The Noun Project](https://thenounproject.com/)
 
 ## References
