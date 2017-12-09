@@ -1,19 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
-	flatpickr("#earthDate", {});
+	let today = new Date();
+	let calendar = flatpickr("#earthDate", {
+		altInput: true,
+		defaultDate: today.fp_incr(-1),
+		minDate: new Date("January 1, 2004 0:0:00"),
+		maxDate: today
+	});
 
 	document.getElementById("searchForPhotos").addEventListener("submit", requestPhotos);
 
 	function requestPhotos(e) {
 		e.preventDefault();
+		clearTable();
+
 		const API_BASE = "https://api.nasa.gov/mars-photos/api/v1/rovers",
 			API_KEY = `api_key=${config.API_KEY}`;
 
 		let rover = e.target[0].value,
 			earthDate = e.target[1].value;
 
-		// Clear any previous error messages or photos
-		hideErrorMsg();
-		clearTable();
+		if (!earthDate) return showErrorMsg("No Earth Date Selected");
 
 		// Call Mars Rover API
 		fetch(`${API_BASE}/${rover}/photos?earth_date=${earthDate}&page=1&${API_KEY}`)
@@ -27,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				constructTable(response.photos, rover, earthDate);
 			})
 			.catch(function(error) {
-				showErrorMsg(`Error from API: ${error.message}`);
+				showErrorMsg(`Error from Mars Rover API: <span>${error.message}</span>`);
 				console.log(`Error: ${error.message}`);
 			});
 	}
@@ -86,10 +92,16 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function clearTable() {
+		hideErrorMsg();
 		let table = document.getElementById("photoTable");
 		let blankState = document.getElementById("blankState");
 
 		table.style.display = "none";
 		blankState.style.display = "block";
+	}
+
+	function setDateRange() {
+		calendar.set("minDate", new Date());
+		calendar.set("maxDate", new Date());
 	}
 });
