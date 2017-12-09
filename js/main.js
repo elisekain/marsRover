@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
 	const API_BASE = "https://api.nasa.gov/mars-photos/api/v1",
-		API_KEY = `api_key=${window.config ? window.config.API_KEY : "DEMO_KEY"}`;
+		API_KEY = `api_key=${window.API_KEY ? window.API_KEY : "DEMO_KEY"}`;
+
+	console.log(window.config);
 
 	let rovers = {
 		curiosity: null,
@@ -32,11 +34,17 @@ document.addEventListener("DOMContentLoaded", function() {
 		// Call Mars Rover API for photos
 		fetch(`${API_BASE}/rovers/${rover}/photos?earth_date=${earthDate}&page=1&${API_KEY}`)
 			.then(function(response) {
+				return response.json();
+			})
+			.then(function(response) {
 				spinnerOff();
-				if (response.ok) {
-					return response.json();
+				if (response.photos) {
+					return response;
 				}
-				throw new Error("Network response was not ok.");
+
+				throw new Error(
+					response.error ? response.error.message : "Network response was not ok"
+				);
 			})
 			.then(function(response) {
 				constructTable(response.photos, rover, earthDate);
@@ -115,10 +123,16 @@ document.addEventListener("DOMContentLoaded", function() {
 			// Call Mars Rover API for manifests
 			fetch(`${API_BASE}/manifests/${rover}/?${API_KEY}`)
 				.then(function(response) {
-					if (response.ok) {
-						return response.json();
+					return response.json();
+				})
+				.then(function(response) {
+					if (response.photo_manifest) {
+						return response;
 					}
-					throw new Error("Network response was not ok.");
+
+					throw new Error(
+						response.error ? response.error.message : "Network response was not ok"
+					);
 				})
 				.then(function(response) {
 					let info = response.photo_manifest;
