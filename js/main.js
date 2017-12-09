@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		let rover = e.target[0].value,
 			earthDate = e.target[1].value;
 
+		// Clear any previous error messages or photos
+		hideErrorMsg();
+		clearTable();
+
 		// Call Mars Rover API
 		fetch(`${API_BASE}/${rover}/photos?earth_date=${earthDate}&page=1&${API_KEY}`)
 			.then(function(response) {
@@ -20,21 +24,36 @@ document.addEventListener("DOMContentLoaded", function() {
 				throw new Error("Network response was not ok.");
 			})
 			.then(function(response) {
-				constructTable(response.photos, rover);
+				constructTable(response.photos, rover, earthDate);
 			})
 			.catch(function(error) {
+				showErrorMsg(`Error from API: ${error.message}`);
 				console.log(`Error: ${error.message}`);
 			});
 	}
 
-	function constructTable(photos, rover) {
-		if (!photos.length) console.log("No Photos Found");
+	function constructTable(photos, rover, earthDate) {
+		// If no photos found, show error message
+		if (!photos.length) {
+			rover = rover.replace(/\w\S*/g, function(w) {
+				return w.charAt(0).toUpperCase() + w.substr(1);
+			});
+
+			let errorMsg = `
+				No Photos Found for 
+				<span>${rover}</span> on 
+				<span>${earthDate}</span>
+			`;
+
+			return showErrorMsg(errorMsg);
+		}
+
+		// Otherwise, construct table of photos
 		let table = document.getElementById("photoTable");
 		let tableBody = document.getElementById("photoTableBody");
 		let blankState = document.getElementById("blankState");
 		tableBody.innerHTML = "";
 
-		// Add row for each photo
 		photos.map(function(photo) {
 			tableBody.innerHTML += `
 			<tr>
@@ -53,5 +72,24 @@ document.addEventListener("DOMContentLoaded", function() {
 		blankState.style.display = "none";
 
 		console.log(photos);
+	}
+
+	function showErrorMsg(error) {
+		let errorMsg = document.getElementById("errorMsg");
+		errorMsg.innerHTML = error;
+		errorMsg.style.display = "block";
+	}
+
+	function hideErrorMsg() {
+		let errorMsg = document.getElementById("errorMsg");
+		errorMsg.style.display = "none";
+	}
+
+	function clearTable() {
+		let table = document.getElementById("photoTable");
+		let blankState = document.getElementById("blankState");
+
+		table.style.display = "none";
+		blankState.style.display = "block";
 	}
 });

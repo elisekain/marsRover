@@ -1,4 +1,5 @@
 #blankState {
+	position: relative;
 	background-color: lighten($black, 85%);
 	padding: 10% 5%;
 	margin-top: 3%;
@@ -11,6 +12,20 @@
 	span {
 		font-weight: bold;
 		color: $lt-blue;
+	}
+
+	#errorMsg {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		background-color: $red;
+		color: white;
+
+		span {
+			color: white;
+		}
 	}
 }
 
