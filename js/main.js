@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 	const API_BASE = "https://api.nasa.gov/mars-photos/api/v1",
-		API_KEY = `api_key=${config ? config.API_KEY : "DEMO_KEY"}`;
+		API_KEY = `api_key=${window.config ? window.config.API_KEY : "DEMO_KEY"}`;
 
 	let rovers = {
 		curiosity: null,
