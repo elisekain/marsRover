@@ -1,4 +1,4 @@
-form.searchForPhotos {
+form#searchForPhotos {
 	padding-top: 3%;
 
 	label {
@@ -12,6 +12,11 @@ form.searchForPhotos {
 	button {
 		font-size: 1.125rem;
 		width: 100%;
+	}
+
+	select,
+	input {
+		height: 35px;
 	}
 
 	button {

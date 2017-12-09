@@ -14,7 +14,7 @@
 		</header>
 		
 		<main class="container">
-			<form class="searchForPhotos row">
+			<form id="searchForPhotos" class="row">
 				<!-- Mars Rover Select -->
 				<div class="col-4">
 					<label for="rovers">Mars Rover Name:</label>
@@ -37,10 +37,22 @@
 				</div>
 			</form>
 			
+			<!-- Blank State -->
 			<div id="blankState" class="center">
 				<h2>Find a rover photo...</h2>
-				<p>Try searching for <span>Curiosity</span> on <span>2017-12-18</span></p>
+				<p>Try searching for <span>Curiosity</span> on <span>2017-12-7</span></p>
 			</div>
+			
+			<!-- Photo Table -->
+			<table id="photoTable" class="row center">
+				<thead>
+					<th class="col-4">Image ID</th>
+					<th class="col-4">Martian Sol</th>
+					<th class="col-4">Thumbnail</th>
+				</thead>
+				<tbody id="photoTableBody">
+				</tbody>
+			</table>
 		</main>
 		
 		<footer>

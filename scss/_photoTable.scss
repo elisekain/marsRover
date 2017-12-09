@@ -13,3 +13,32 @@
 		color: $lt-blue;
 	}
 }
+
+#photoTable {
+	th {
+		color: white;
+	}
+
+	tr:nth-child(even) {
+		background-color: lighten($black, 85%);
+	}
+
+	tr:nth-child(odd) {
+		background-color: lighten($lt-blue, 55%);
+	}
+
+	thead tr:nth-child(1) {
+		background-color: $black;
+	}
+
+	img {
+		max-width: 100px;
+		min-width: 100px;
+		vertical-align: middle;
+	}
+
+	td {
+		height: 100px;
+		line-height: 100px;
+	}
+}
