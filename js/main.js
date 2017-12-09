@@ -1,28 +1,35 @@
 document.addEventListener("DOMContentLoaded", function() {
+	const API_BASE = "https://api.nasa.gov/mars-photos/api/v1",
+		API_KEY = `api_key=${config.API_KEY}`;
+
+	let rovers = {
+		curiosity: null,
+		opportunity: null,
+		spirit: null
+	};
+
+	requestManifests();
+
 	let today = new Date();
 	let calendar = flatpickr("#earthDate", {
 		altInput: true,
-		defaultDate: today.fp_incr(-1),
 		minDate: new Date("January 1, 2004 0:0:00"),
 		maxDate: today
 	});
 
 	document.getElementById("searchForPhotos").addEventListener("submit", requestPhotos);
+	document.getElementById("rovers").addEventListener("change", setDateRange);
 
 	function requestPhotos(e) {
 		e.preventDefault();
 		clearTable();
-
-		const API_BASE = "https://api.nasa.gov/mars-photos/api/v1/rovers",
-			API_KEY = `api_key=${config.API_KEY}`;
-
 		let rover = e.target[0].value,
 			earthDate = e.target[1].value;
 
 		if (!earthDate) return showErrorMsg("No Earth Date Selected");
 
-		// Call Mars Rover API
-		fetch(`${API_BASE}/${rover}/photos?earth_date=${earthDate}&page=1&${API_KEY}`)
+		// Call Mars Rover API for photos
+		fetch(`${API_BASE}/rovers/${rover}/photos?earth_date=${earthDate}&page=1&${API_KEY}`)
 			.then(function(response) {
 				if (response.ok) {
 					return response.json();
@@ -76,8 +83,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		table.style.display = "table";
 		blankState.style.display = "none";
-
-		console.log(photos);
 	}
 
 	function showErrorMsg(error) {
@@ -100,8 +105,41 @@ document.addEventListener("DOMContentLoaded", function() {
 		blankState.style.display = "block";
 	}
 
-	function setDateRange() {
-		calendar.set("minDate", new Date());
-		calendar.set("maxDate", new Date());
+	function requestManifests() {
+		Object.keys(rovers).map(function(rover) {
+			// Call Mars Rover API for manifests
+			fetch(`${API_BASE}/manifests/${rover}/?${API_KEY}`)
+				.then(function(response) {
+					if (response.ok) {
+						return response.json();
+					}
+					throw new Error("Network response was not ok.");
+				})
+				.then(function(response) {
+					let info = response.photo_manifest;
+					rovers[rover] = {
+						minDate: info.landing_date,
+						maxDate: info.max_date
+					};
+
+					if (rover === document.getElementById("rovers").value) {
+						setDateRange(null, rover);
+					}
+				})
+				.catch(function(error) {
+					showErrorMsg(`Error from Mars Rover API: <span>${error.message}</span>`);
+					console.log(`Error: ${error.message}`);
+				});
+		});
+	}
+
+	function setDateRange(e, roverName) {
+		if (e) roverName = e.target.value;
+		if (!roverName) return;
+
+		// Based on rover manifest, set minDate, maxDate and date selected
+		calendar.set("minDate", new Date(rovers[roverName].minDate));
+		calendar.set("maxDate", new Date(rovers[roverName].maxDate));
+		calendar.setDate(new Date(rovers[roverName].maxDate));
 	}
 });
