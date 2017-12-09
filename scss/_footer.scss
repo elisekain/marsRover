@@ -1,5 +1,6 @@
 footer {
 	margin-top: 5%;
+	margin-bottom: 3%;
 
 	ul {
 		text-align: center;
@@ -7,7 +8,8 @@ footer {
 
 	li,
 	a,
-	em {
+	em,
+	p {
 		font-size: 0.875rem;
 		color: lighten($black, 30%);
 
@@ -19,5 +21,9 @@ footer {
 	li {
 		display: inline-block;
 		margin-right: 5%;
+	}
+
+	p {
+		text-align: center;
 	}
 }

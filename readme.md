@@ -4,8 +4,7 @@
 
 ### Sass CLI Command
 
-To generate minified css when scss changes, run the following command in the root of the project: `$
-sass --watch scss/main.scss:css/main.min.css --style compressed`
+To generate minified css when scss changes, run the following command in the root of the project: `$ sass --watch scss/main.scss:css/main.min.css --style compressed`
 
 ## Planning
 
@@ -17,5 +16,6 @@ sass --watch scss/main.scss:css/main.min.css --style compressed`
 
 * [Flatpickr](https://chmln.github.io/flatpickr/)
 * [Simple Grid](http://simplegrid.io/)
+* [Double Bounce Loader](https://github.com/tobiasahlin/SpinKit/blob/master/examples/2-double-bounce.html)
 
 ## References

@@ -27,10 +27,12 @@ document.addEventListener("DOMContentLoaded", function() {
 			earthDate = e.target[1].value;
 
 		if (!earthDate) return showErrorMsg("No Earth Date Selected");
+		spinnerOn();
 
 		// Call Mars Rover API for photos
 		fetch(`${API_BASE}/rovers/${rover}/photos?earth_date=${earthDate}&page=1&${API_KEY}`)
 			.then(function(response) {
+				spinnerOff();
 				if (response.ok) {
 					return response.json();
 				}
@@ -40,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				constructTable(response.photos, rover, earthDate);
 			})
 			.catch(function(error) {
+				spinnerOff();
 				showErrorMsg(`Error from Mars Rover API: <span>${error.message}</span>`);
 				console.log(`Error: ${error.message}`);
 			});
@@ -154,5 +157,15 @@ document.addEventListener("DOMContentLoaded", function() {
 		calendar.set("minDate", new Date(rovers[roverName].minDate).fp_incr(1));
 		calendar.set("maxDate", new Date(rovers[roverName].maxDate).fp_incr(1));
 		calendar.setDate(new Date(rovers[roverName].maxDate).fp_incr(1));
+	}
+
+	function spinnerOn() {
+		document.getElementById("searchIcon").style.display = "none";
+		document.getElementById("loadIcon").style.display = "inline-block";
+	}
+
+	function spinnerOff() {
+		document.getElementById("searchIcon").style.display = "inline-block";
+		document.getElementById("loadIcon").style.display = "none";
 	}
 });

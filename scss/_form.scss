@@ -1,3 +1,12 @@
+@keyframes mymove {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
 form#searchForPhotos {
 	padding-top: 3%;
 
@@ -23,8 +32,20 @@ form#searchForPhotos {
 		background-color: $black;
 		color: white;
 		border: none;
-		padding: 15px 15px;
+		padding: 15px;
 		margin-top: 3.5%;
+
+		#searchIcon,
+		#loadIcon {
+			vertical-align: middle;
+		}
+
+		#loadIcon {
+			display: none;
+			transform-origin: 50% 43%;
+			animation: mymove 1.5s infinite;
+			transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+		}
 	}
 
 	span {
