@@ -81,11 +81,19 @@ function spinnerOff() {
 }
 
 function activateRover() {
-	document.getElementById("marsRoverSVG").classList.add("hideRover");
-	document.getElementById("marsRoverDupe").classList.add("moveIt");
+	let original = document.getElementById("marsRoverSVG"),
+		dupe = document.getElementById("marsRoverDupe");
+
+	// No double clicks
+	if (original.classList.contains("hideRover")) {
+		return;
+	}
+
+	original.classList.add("hideRover");
+	dupe.classList.add("moveIt");
 
 	setTimeout(function() {
-		document.getElementById("marsRoverSVG").classList.remove("hideRover");
-		document.getElementById("marsRoverDupe").classList.remove("moveIt");
+		original.classList.remove("hideRover");
+		dupe.classList.remove("moveIt");
 	}, 5000);
 }
