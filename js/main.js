@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// Set up event listeners
 	document.getElementById("searchForPhotos").addEventListener("submit", requestPhotos);
+	document.getElementById("marsRoverSVG").addEventListener("click", activateRover);
 	document.getElementById("rovers").addEventListener("change", function(e) {
 		setDateRange(e, null, calendar, rovers);
 	});

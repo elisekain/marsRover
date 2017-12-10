@@ -79,3 +79,13 @@ function spinnerOff() {
 	document.getElementById("searchIcon").style.display = "inline-block";
 	document.getElementById("loadIcon").style.display = "none";
 }
+
+function activateRover() {
+	document.getElementById("marsRoverSVG").classList.add("hideRover");
+	document.getElementById("marsRoverDupe").classList.add("moveIt");
+
+	setTimeout(function() {
+		document.getElementById("marsRoverSVG").classList.remove("hideRover");
+		document.getElementById("marsRoverDupe").classList.remove("moveIt");
+	}, 5000);
+}

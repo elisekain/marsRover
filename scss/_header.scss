@@ -1,4 +1,5 @@
 header {
+	position: relative;
 	padding-top: 3%;
 	background-color: $black;
 	background-image: url("http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01898/opgs/edr/ncam/NRB_565992531EDR_F0671016CCAM02897M_.JPG");
@@ -22,8 +23,67 @@ header {
 		margin-top: 0;
 	}
 
-	.marsRoverSVG {
+	#marsRoverSVG {
 		display: block;
 		max-width: 100px;
+		transition: 0.25s;
+
+		&.hideRover {
+			opacity: 0;
+		}
+	}
+
+	#marsRoverDupe {
+		position: absolute;
+		max-width: 100px;
+		left: -200px;
+
+		&.moveIt {
+			animation: 4.5s moveIt 1 linear;
+		}
+	}
+}
+
+@keyframes moveIt {
+	0% {
+		left: 0%;
+		top: 60%;
+		transform: rotate(0deg);
+	}
+
+	10% {
+		left: 10%;
+		top: 60%;
+		transform: rotate(-10deg);
+	}
+
+	20% {
+		left: 20%;
+		top: 20%;
+		transform: rotate(-35deg);
+	}
+
+	40% {
+		left: 40%;
+		top: 5%;
+		transform: rotate(-11deg);
+	}
+
+	60% {
+		left: 60%;
+		top: 9%;
+		transform: rotate(35deg);
+	}
+
+	80% {
+		left: 80%;
+		top: 48%;
+		transform: rotate(20deg);
+	}
+
+	100% {
+		left: 100%;
+		top: 60%;
+		transform: rotate(0deg);
 	}
 }
