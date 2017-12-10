@@ -4,7 +4,19 @@
 
 ### Sass CLI Command
 
-To generate minified css when scss changes, run the following command in the root of the project: `$ sass --watch scss/main.scss:css/main.min.css --style compressed`
+To generate minified css when scss changes (and watch for changes), run the following command in the root of the project:
+
+```
+$ sass --watch scss/main.scss:css/main.min.css --style compressed
+```
+
+### Babel Command
+
+Use babel to transpile to ES5 and minify the javascript (and watch for changes):
+
+```
+$ npx babel js --out-file dist/main.min.js --watch
+```
 
 ## Planning
 
@@ -19,3 +31,7 @@ To generate minified css when scss changes, run the following command in the roo
 * [The Noun Project](https://thenounproject.com/)
 
 ## References
+
+```
+
+```

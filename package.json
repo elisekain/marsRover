@@ -1,0 +1,25 @@
+{
+	"name": "marsRover",
+	"version": "1.0.0",
+	"description": "## Installation Instructions",
+	"main": "config.js",
+	"dependencies": {
+		"babel-preset-es2015": "^6.24.1",
+		"babili": "^0.1.4"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/elisekain/marsRover.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/elisekain/marsRover/issues"
+	},
+	"homepage": "https://github.com/elisekain/marsRover#readme"
+}
