@@ -1,7 +1,7 @@
 {
-	"name": "marsRover",
+	"name": "Mars Rover Photos",
 	"version": "1.0.0",
-	"description": "## Installation Instructions",
+	"description": "Retrieve photos from a Mars rover",
 	"main": "config.js",
 	"dependencies": {
 		"babel-preset-es2015": "^6.24.1",
