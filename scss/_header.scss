@@ -1,6 +1,8 @@
 header {
 	padding-top: 3%;
-	background-color: $lt-blue;
+	background-color: $black;
+	background-image: url("http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01898/opgs/edr/ncam/NRB_565992531EDR_F0671016CCAM02897M_.JPG");
+	background-blend-mode: soft-light;
 
 	@media only screen and (max-width: $breakpoint-small) {
 		padding-top: 7%;
