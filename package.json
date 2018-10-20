@@ -1,5 +1,5 @@
 {
-	"name": "Mars Rover Photos",
+	"name": "MarsRoverPhotos",
 	"version": "1.0.0",
 	"description": "Retrieve photos from a Mars rover",
 	"main": "config.js",
