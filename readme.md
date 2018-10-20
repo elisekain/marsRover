@@ -2,7 +2,7 @@
 
 This simple, single page web application queries the [Mars Rover API from NASA](https://api.nasa.gov/api.html#MarsPhotos) to return photos from Mars.
 
-The user can select the rover (Curiosity, Opportunity or Spirit) and date used in the query. The photo id, Martian sol &amp; thumbnail are displayed in a table. When the thumbnail is clicked, the images opens in a new tab.
+The user can select the rover (Curiosity, Opportunity or Spirit) and date used in the query. The photo id, Martian sol &amp; thumbnail are displayed in a table. When the thumbnail is clicked, the image opens in a new tab.
 
 ## Additional Features
 
@@ -25,7 +25,7 @@ You can easily view an example of the application error message by clicking "Sea
 * Color contrast for text/background meets [WCAG AA](https://www.w3.org/TR/WCAG20/) standards.
 * Images have alt tags (including images generated from API calls).
 * `manifest.json` file declares a theme and background color for brand consistency on mobile.
-* ES6 code is transpiled to es2015 for more browser compatibility.
+* ES6 code is transpiled to ES5 for more browser compatibility.
 
 ### CSS Animation
 
